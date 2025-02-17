@@ -25,6 +25,11 @@ namespace DotnetAPI.Data
         {
             return _connection.QuerySingle<T>(path);
         }
+        public void ExecuteProcedureMulti(string sql)
+        {
+            IDbConnection dbConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            dbConnection.Execute(sql);
+        }
         public bool ExecuteSql(string path)
         {
             return _connection.Execute(path) > 0;

@@ -21,5 +21,10 @@ namespace DotnetAPI.Controllers
         {
             return _dataContextDapper.LoadSingleData<DateTime>("Select GetDate()");
         }
+        [HttpGet("TestDeployConnection")]
+        public IActionResult Get()
+        {
+            return Ok("your application was deployed");
+        }
     }
 }

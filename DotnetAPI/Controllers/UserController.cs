@@ -20,11 +20,11 @@ namespace DotnetAPI.Controllers
         private readonly IConfiguration _configuration;
         private readonly ReusableSQL _reusableSql;
 
-        public UserController(IConfiguration configuration, ReusableSQL reusableSQL)
+        public UserController(IConfiguration configuration)
         {
             _configuration = configuration;
             _dataContext = new DataContextDapper(_configuration);
-            _reusableSql = reusableSQL;
+            _reusableSql = new ReusableSQL(_configuration);
         }
         [HttpGet("GetUsersAsync")]
         public IEnumerable<Users> GetUsers()
