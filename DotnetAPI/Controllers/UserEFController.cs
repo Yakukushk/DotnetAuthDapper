@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using BenchmarkDotNet.Attributes;
 using DotnetAPI.Data;
 using DotnetAPI.Data.Repositories.Interfaces;
+using DotnetAPI.Filters;
 using DotnetAPI.Models;
 using DotnetAPI.Models.DTOs;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotnetAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserEFController : ControllerBase
     {
@@ -24,16 +26,33 @@ namespace DotnetAPI.Controllers
             _mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, Users>()));
             _userRepository = userRepository;
         }
+        [HttpGet("IpAddress")]
+        public async Task<IActionResult> GetIPUser()
+        {
+            string ip = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = HttpContext.Connection.RemoteIpAddress?.ToString();
+            }
+
+            return Ok(new { IpAddress = ip });
+        }
 
         [HttpGet]
-        public async Task<IEnumerable<Users>> GetUsers() =>
+        [ServiceFilter(typeof(FilterAction))]
+        [FilterTimerExecute]
+        [Benchmark(Baseline = true)]
+        public async Task<IEnumerable<object>> GetUsers() =>
              await _userRepository.GetAsync();
 
         [HttpGet("singleUser/{id}")]
+        [TypeFilter(typeof(FilterTimerExecute))]
         public async Task<Users> GetSingleUser(int id) =>
            await _userRepository.GetSingleAsync(id);
 
         [HttpPut]
+        [TypeFilter(typeof(FilterTimerExecute))]
         public async Task<IActionResult> EditUser([FromBody] Users user)
         {
             var userEntity =
@@ -62,6 +81,7 @@ namespace DotnetAPI.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(FilterTimerExecute))]
         public async Task<IActionResult> AddUser([FromBody] Users user)
         {
             Users userDb = _mapper.Map<Users>(user);
@@ -77,6 +97,7 @@ namespace DotnetAPI.Controllers
             throw new Exception("Failed to Update User");
         }
         [HttpDelete]
+        [TypeFilter(typeof(FilterTimerExecute))]
         public async Task<IActionResult> DeleteUser([FromQuery] int id)
         {
             var result =
@@ -94,6 +115,7 @@ namespace DotnetAPI.Controllers
             throw new Exception("Failed to Update User");
         }
         [HttpGet("UserSalary/{userId}")]
+        [TypeFilter(typeof(FilterTimerExecute))]
         public UserSalary GetUserSalaryEF(int userId)
         {
             return _userRepository.GetSingleUserSalary(userId);

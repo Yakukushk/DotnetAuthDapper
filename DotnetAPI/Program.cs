@@ -1,9 +1,15 @@
+using DotnetAPI.Application.Caching;
 using DotnetAPI.Data;
 using DotnetAPI.Data.Repositories;
 using DotnetAPI.Data.Repositories.Interfaces;
+using DotnetAPI.EndPoints;
 using DotnetAPI.Extensions;
+using DotnetAPI.Filters;
+using DotnetAPI.Infrastructure.Caching;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,12 +33,37 @@ builder.Services.AddCors((options) => // Development
     });
 });
 builder.Services.AddDbContext<DataContextEF>();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    string connection = builder.Configuration.GetConnectionString("Redis");
+    options.Configuration = connection;
+
+});
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddScoped<ICacheService, CacheService>();
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(FilterAction));
+    options.Filters.Add(typeof(FilterTimerExecute));
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGenWithAuth();
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<FilterAction>();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
+builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
 #region
 //SymmetricSecurityKey symmetricSecurityKey =
 //           new SymmetricSecurityKey(
@@ -47,7 +78,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //    ValidateAudience = false // a site that receives a token, could not replay it to another site. 
 //};
 #endregion
-var tokenValidationParameters = SymmetricSecurityKeyExtensions.TokenValidationParametersExtentions(builder.Configuration.GetSection("AppSettings:TokenKey").Value);
+var tokenValidationParameters = SymmetricSecurityKeyExtensions.Instance.TokenValidationParametersExtentions(builder.Configuration.GetSection("AppSettings:TokenKey").Value);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
  .AddJwtBearer(options =>
@@ -68,10 +99,17 @@ else
 {
     app.UseHttpsRedirection();
     app.UseCors("ProdCors");
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-app.UseAuthentication();
-app.UseAuthorization();
+
 
 app.MapControllers();
+app.UseRouting();   
+RouteGroupBuilder routeGroupBuilder = app.MapGroup("/api");
+app.MapEndPoints(routeGroupBuilder);
 
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseForwardedHeaders();
 app.Run();

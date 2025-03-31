@@ -1,0 +1,16 @@
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.csproj.AssemblyReference.cache
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.AssemblyInfoInputs.cache
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.AssemblyInfo.cs
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.csproj.CoreCompileInputs.cache
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.sourcelink.json
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\bin\Debug\net8.0\DotnetAPI.Application.deps.json
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\bin\Debug\net8.0\DotnetAPI.Application.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\bin\Debug\net8.0\DotnetAPI.Application.pdb
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\bin\Debug\net8.0\DotnetAPI.Logic.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\bin\Debug\net8.0\DotnetAPI.Logic.pdb
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAP.2BA042A0.Up2Date
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\refint\DotnetAPI.Application.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\DotnetAPI.Application.pdb
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Application\obj\Debug\net8.0\ref\DotnetAPI.Application.dll

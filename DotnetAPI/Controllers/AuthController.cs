@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -28,7 +28,7 @@ namespace DotnetAPI.Controllers
         private readonly ReusableSQL _reusableSQL;
         public AuthController(IConfiguration config)
         {
-            _dataContext = new DataContextDapper(config);
+            _dataContext = new Data.DataContextDapper(config);
             _config = config;
             _mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<RegistrationDto, UserComplete>()));
             _reusableSQL = new ReusableSQL(_config);

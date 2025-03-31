@@ -3,9 +3,31 @@ using System.Text;
 
 namespace DotnetAPI.Extensions
 {
-    internal static class SymmetricSecurityKeyExtensions
+    internal class SymmetricSecurityKeyExtensions
     {
-        internal static TokenValidationParameters TokenValidationParametersExtentions(string token)
+    
+
+        private static SymmetricSecurityKeyExtensions _instance = new SymmetricSecurityKeyExtensions();
+        private static object _instanceLock = new object();
+        private SymmetricSecurityKeyExtensions()
+        {
+
+        }
+        public static SymmetricSecurityKeyExtensions Instance
+        {
+            get
+            {
+                lock (_instanceLock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new SymmetricSecurityKeyExtensions();
+                    }
+                    return _instance;
+                }
+            }
+        }
+        public TokenValidationParameters TokenValidationParametersExtentions(string token)
         {
             SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token));
             TokenValidationParameters tokenValidationParameters = new TokenValidationParameters()

@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using DotnetAPI.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 
 namespace DotnetAPI.Extensions
 {
     internal static class ServiceCollectionExtensions
     {
+
         internal static IServiceCollection AddSwaggerGenWithAuth(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
             {
                 options.CustomSchemaIds(id => id.FullName!.Replace('+', '-'));
+                options.SupportNonNullableReferenceTypes();
                 var securityScheme = new OpenApiSecurityScheme
                 {
                     Name = "JWT Authentication",

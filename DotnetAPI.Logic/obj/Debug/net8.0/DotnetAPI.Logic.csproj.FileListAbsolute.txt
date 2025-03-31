@@ -1,0 +1,13 @@
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.csproj.AssemblyReference.cache
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.AssemblyInfoInputs.cache
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.AssemblyInfo.cs
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.csproj.CoreCompileInputs.cache
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.sourcelink.json
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\bin\Debug\net8.0\DotnetAPI.Logic.deps.json
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\bin\Debug\net8.0\DotnetAPI.Logic.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\bin\Debug\net8.0\DotnetAPI.Logic.pdb
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\refint\DotnetAPI.Logic.dll
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\DotnetAPI.Logic.pdb
+C:\Users\danii\projects\dotnet-course\DotnetAuthDapper\DotnetAPI.Logic\obj\Debug\net8.0\ref\DotnetAPI.Logic.dll
